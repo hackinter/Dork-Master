@@ -1,4 +1,3 @@
-```markdown
 # DORK-MASTER (Dorking By Country Code e.g.: .us for USA)
 ### Tool Name: DORK-MASTER  
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/hackinter/Dork-Master)  
