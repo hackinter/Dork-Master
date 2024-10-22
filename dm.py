@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import random
@@ -28,6 +29,17 @@ def display_banner():
     print("[*] Thanks to Allah. Palestine is independent")
     print("[*] https://github.com/hackinter (Hacking is Creative problem solving)")
     print("===============================================================================")
+
+def clear_terminal():
+    os.system('clear' if os.name != 'nt' else 'cls')
+
+def animate_loading():
+    loading_animation = ["[•]", "[◐]", "[◓]", "[◑]"]
+    for _ in range(10):  # Animation loop
+        for frame in loading_animation:
+            print("\r" + frame, end="")
+            time.sleep(0.2)
+    print("\r[✔] Done loading!          ")
 
 def akhir():
     try:
@@ -64,7 +76,9 @@ def akhir():
         sys.exit(1)
 
 if __name__ == "__main__":
+    clear_terminal()  # Clear the terminal
     display_banner()  # Call the function to display the banner
+    animate_loading()  # Call the loading animation
 
     save_result = input("[?] want to save the dork result file (Y/N): ").strip().lower()
     if save_result == 'y':
