@@ -32,7 +32,6 @@ sudo apt-get install python3-pip -y
 pip install googlesearch-python
 git clone https://github.com/hackinter/Dork-Master.git
 cd Dork-Master
-python3 drok.py
 ```
 
 ### For Termux:
@@ -45,14 +44,13 @@ pkg install python git -y
 pip install googlesearch-python
 git clone https://github.com/hackinter/Dork-Master.git
 cd Dork-Master
-python drok.py
 ```
 
 ## ONE CLICK INSTALLATION:
 For quick installation, you can use this single command for **Linux**:
 
 ```bash
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install python3 git -y && sudo apt-get install python3-pip -y && pip install googlesearch-python && git clone https://github.com/hackinter/Dork-Master.git && cd Dork-Master python3 dork.py
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install python3 git -y && sudo apt-get install python3-pip -y && pip install googlesearch-python && git clone https://github.com/hackinter/Dork-Master.git && cd Dork-Master 
 ```
 
 ### © 2024 HACKINTER. All rights reserved.
