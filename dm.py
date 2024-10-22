@@ -2,7 +2,7 @@ import sys
 import time
 import os
 
-# custom speed strings
+# Custom speed strings
 def slow(s):
     for c in s + '\n':
         sys.stdout.write(c)
@@ -26,7 +26,7 @@ try:
 except ImportError:
     fast("[!] you must install google ..")
     med("[*] wait a moment, this program will install the module ...")
-    os.system("pip3 install google")
+    os.system("pip install google")
     time.sleep(3)
     med("[*] done ...")
 
@@ -41,23 +41,18 @@ def banner():
     """)
 
 def clear():
-    if sys.platform.startswith('linux'):
-        os.system('clear')
-    elif sys.platform.startswith('freebsd'):
-        os.system('clear')
-    else:
+    if os.name == 'nt':  # Windows
         os.system('cls')
+    else:  # Linux or Mac
+        os.system('clear')
 
-# check python version   
-if sys.version.startswith("3"):
-    slow("[!] python3 detected ...")
-    time.sleep(3)
-else:
+# Check Python version
+if sys.version_info[0] != 3:
     slow("[x] you must be run using python3 ...")
     time.sleep(3)
     sys.exit(1)
 
-# print starting
+# Print starting
 slow('[!] starting ... ')
 time.sleep(2)
 clear()
@@ -75,16 +70,16 @@ time.sleep(2)
 
 try:
     namefile = input("\n[?] want to save the dork result file (Y/N) ").strip()
-    dork = ("")
+    dork = ""
 except KeyboardInterrupt:
     print ("\n[!] you pressed ctrl + c")
     time.sleep(0.5)
     print("\n[!] exit")
     sys.exit(1)
 
-def savefile(namefile):
+def savefile(results):
     with open(f"{dork}.txt", "a") as file:
-        file.write(str(namefile) + "\n")
+        file.write(str(results) + "\n")
 
 if namefile.lower().startswith("y"):
     print("[!] input filename without extension")
@@ -102,15 +97,17 @@ def akhir():
         requ = 0
 
         # Increase the pause time between requests to avoid 429 errors
-        for results in search(dork, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=5):  # Increased pause time
+        for results in search(dork, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=5):
             print("[*]", results)
             time.sleep(0.1)
             requ += 1
+            
+            # Save the results if filename is provided
+            if namefile.lower().startswith("y"):
+                savefile(results)
+            
             if requ >= int(uneed):
                 break
-
-            savefile(results)
-            time.sleep(0.1)
 
     except KeyboardInterrupt:
         print("\n")
