@@ -101,10 +101,11 @@ def akhir():
 
         requ = 0
 
-        for results in search(dork, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=2):
+        # Increase the pause time between requests to avoid 429 errors
+        for results in search(dork, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=5):  # Increased pause time
             print("[*]", results)
             time.sleep(0.1)
-            requ += 1.
+            requ += 1
             if requ >= int(uneed):
                 break
 
