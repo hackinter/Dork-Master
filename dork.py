@@ -68,7 +68,7 @@ med("""
 [*] coded by HACKINTER@ANONYMIZER                                           [*] 
 [*] Copyright 2024 HACKINTER                                                [*] 
 [*] just simple tools to make your life easier                              [*] 
-[*] We are on the path to truth, hackers are innovators.                    [*] 
+[*] Thanks to Allah. Palestine is independent                               [*] 
 [*] https://github.com/hackinter (Hacking is Creative problem solving)      [*] 
 ===============================================================================""")
 time.sleep(2)
@@ -94,7 +94,7 @@ else:
 
 def akhir():
     try:
-        country_code = input("\n[*] enter country code (e.g., ..us for USA) : ").strip()
+        country_code = input("\n[*] enter country code (e.g., .bd for Bangladesh) : ").strip()
         dork = f"site:*{country_code}"
         uneed = input("[?] how much do you need : ")
         print("\n")
