@@ -1,116 +1,57 @@
 import sys
 import time
-import os
+import random
+from googlesearch import search
 
-# custom speed strings
-def slow(s):
-    for c in s + '\n':
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(4. / 100)
+def savefile(results, filename):
+    with open(f"{filename}.txt", "a") as f:
+        f.write(results + "\n")
 
-def med(s):
-    for c in s + '\n':
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(2. / 100)
+def slow(message):
+    print(message)
+    time.sleep(1)
 
-def fast(s):
-    for c in s + '\n':
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(1. / 170)
-
-try:
-    from googlesearch import search
-except ImportError:
-    fast("[!] you must install google ..")
-    med("[*] wait a moment, this program will install the module ...")
-    os.system("pip3 install google")
-    time.sleep(3)
-    med("[*] done ...")
-
-def banner():
-    print("""
+def display_banner():
+    banner = """
 ██████╗  ██████╗ ██████╗ ██╗  ██╗     ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ 
 ██╔══██╗██╔═══██╗██╔══██╗██║ ██╔╝     ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗
 ██║  ██║██║   ██║██████╔╝█████╔╝█████╗██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝
 ██║  ██║██║   ██║██╔══██╗██╔═██╗╚════╝██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗
 ██████╔╝╚██████╔╝██║  ██║██║  ██╗     ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║
 ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
-    """)
-
-def clear():
-    if sys.platform.startswith('linux'):
-        os.system('clear')
-    elif sys.platform.startswith('freebsd'):
-        os.system('clear')
-    else:
-        os.system('cls')
-
-# check python version   
-if sys.version.startswith("3"):
-    slow("[!] python3 detected ...")
-    time.sleep(3)
-else:
-    slow("[x] you must be run using python3 ...")
-    time.sleep(3)
-    sys.exit(1)
-
-# print starting
-slow('[!] starting ... ')
-time.sleep(2)
-clear()
-time.sleep(1)
-banner()
-med(""" 
-=============================================================================== 
-[*] coded by HACKINTER@ANONYMIZER                                           [*] 
-[*] Copyright 2024 HACKINTER                                                [*] 
-[*] just simple tools to make your life easier                              [*] 
-[*] Thanks to Allah. Palestine is independent                               [*] 
-[*] https://github.com/hackinter (Hacking is Creative problem solving)      [*] 
-===============================================================================""")
-time.sleep(2)
-
-try:
-    namefile = input("\n[?] want to save the dork result file (Y/N) ").strip()
-    dork = ("")
-except KeyboardInterrupt:
-    print ("\n[!] you pressed ctrl + c")
-    time.sleep(0.5)
-    print("\n[!] exit")
-    sys.exit(1)
-
-def savefile(namefile):
-    with open(f"{dork}.txt", "a") as file:
-        file.write(str(namefile) + "\n")
-
-if namefile.lower().startswith("y"):
-    print("[!] input filename without extension")
-    dork = input("[?] enter the file name : ")
-else:
-    print ("[*] file not saved \n")
+    """
+    print(banner)
+    print("===============================================================================")
+    print("[*] coded by HACKINTER@ANONYMIZER")
+    print("[*] Copyright 2024 HACKINTER")
+    print("[*] just simple tools to make your life easier")
+    print("[*] Thanks to Allah. Palestine is independent")
+    print("[*] https://github.com/hackinter (Hacking is Creative problem solving)")
+    print("===============================================================================")
 
 def akhir():
     try:
-        country_code = input("\n[*] enter country code (e.g., .bd for Bangladesh) : ").strip()
+        filename = input("[?] input filename without extension: ").strip()
+        country_code = input("[*] enter country code (e.g., .bd for Bangladesh): ").strip()
         dork = f"site:*{country_code}"
-        uneed = input("[?] how much do you need : ")
+        uneed = input("[?] how much do you need: ")
         print("\n")
 
         requ = 0
 
-        for results in search(dork, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=2):
+        # Custom user agent
+        user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+
+        for results in search(dork, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=random.uniform(5, 10), user_agent=user_agent):
             print("[*]", results)
-            time.sleep(0.1)
-            requ += 1.
+            savefile(results, filename)
+            requ += 1
+            
             if requ >= int(uneed):
                 break
 
-            savefile(results)
-            time.sleep(0.1)
-
+        slow("[!] done ... ")
+        
     except KeyboardInterrupt:
         print("\n")
         print("[!] you pressed ctrl + c ... !")
@@ -118,7 +59,16 @@ def akhir():
         time.sleep(0.5)
         sys.exit(1)
 
-    slow("[!] done ... ")
-    sys.exit()
+    except Exception as e:
+        print(f"[!] An error occurred: {e}")
+        sys.exit(1)
 
-akhir()
+if __name__ == "__main__":
+    display_banner()  # Call the function to display the banner
+
+    save_result = input("[?] want to save the dork result file (Y/N): ").strip().lower()
+    if save_result == 'y':
+        akhir()
+    else:
+        print("[*] Exiting without saving.")
+        sys.exit(0)
