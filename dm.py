@@ -7,19 +7,19 @@ def slow(s):
     for c in s + '\n':
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(2)  # Increased to 2 seconds
+        time.sleep(4. / 100)  # Original speed
 
 def med(s):
     for c in s + '\n':
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(2)  # Kept at 2 seconds
+        time.sleep(2. / 100)  # Original speed
 
 def fast(s):
     for c in s + '\n':
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(2)  # Increased to 2 seconds
+        time.sleep(1. / 170)  # Original speed
 
 try:
     from googlesearch import search
@@ -51,34 +51,34 @@ def clear():
 # check python version   
 if sys.version.startswith("3"):
     slow("[!] python3 detected ...")
-    time.sleep(2)  # Increased to 2 seconds
+    time.sleep(3)  # Original speed
 else:
     slow("[x] you must be run using python3 ...")
-    time.sleep(2)  # Increased to 2 seconds
+    time.sleep(3)  # Original speed
     sys.exit(1)
 
 # print starting
 slow('[!] starting ... ')
-time.sleep(2)
+time.sleep(2)  # Original speed
 clear()
-time.sleep(2)
+time.sleep(1)  # Original speed
 banner()
 med(""" 
 =============================================================================== 
-[*] coded by root@HACKINTER                                                 [*] 
+[*] coded by HACKINTER@ANONYMIZER                                           [*] 
 [*] Copyright 2024 HACKINTER                                                [*] 
 [*] just simple tools to make your life easier                              [*] 
 [*] Thanks to Allah. Palestine is independent                               [*] 
 [*] https://github.com/hackinter (Hacking is Creative problem solving)      [*] 
 ===============================================================================""")
-time.sleep(2)
+time.sleep(2)  # Original speed
 
 try:
     namefile = input("\n[?] want to save the dork result file (Y/N) ").strip()
     dork = ""
 except KeyboardInterrupt:
     print("\n[!] you pressed ctrl + c")
-    time.sleep(2)  # Increased to 2 seconds
+    time.sleep(0.5)  # Original speed
     print("\n[!] exit")
     sys.exit(1)
 
@@ -103,20 +103,20 @@ def akhir():
 
         for results in search(dork_query, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=2):
             print("[*]", results)
-            time.sleep(2)  # Increased to 2 seconds
+            time.sleep(2)  # Changed to 2 seconds for working time
             requ += 1
             if requ >= int(uneed):
                 break
 
             if dork:  # Check if dork is not empty
                 savefile(results, dork)
-            time.sleep(2)  # Increased to 2 seconds
+            time.sleep(2)  # Changed to 2 seconds for working time
 
     except KeyboardInterrupt:
         print("\n")
         print("[!] you pressed ctrl + c ... !")
         print("[!] exit ..")
-        time.sleep(2)  # Increased to 2 seconds
+        time.sleep(0.10)  # Original speed
         sys.exit(1)
 
     slow("[!] done ... ")
