@@ -1,6 +1,5 @@
 ```markdown
-# DORK-MASTER
-# Domain Finder Tool By country code (e.g. .us for USA)
+# Domain Finder Tool
 
 This is a simple domain finder tool that helps in searching for domain names in specific countries.
 
@@ -8,6 +7,15 @@ This is a simple domain finder tool that helps in searching for domain names in 
 - Find domain names for specific countries
 - Option to save results to a file
 - User-friendly interface
+
+## Version
+![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
+<a href="https://github.com/hackinter"> 
+    <img title="GitHub" src="https://img.shields.io/badge/GitHub-@hackinter-lightgrey?style=for-the-badge&logo=github"> 
+</a> 
+<a href="https://twitter.com/_anonix_z"> 
+    <img title="Twitter" src="https://img.shields.io/badge/Twitter-@_anonix_z-lightgrey?style=for-the-badge&logo=twitter"> 
+</a>
 
 ## Installation
 
@@ -52,5 +60,3 @@ If you would like to contribute to the improvement of this tool, please share yo
 ## License
 
 This project is licensed under the MIT License.
-
-
