@@ -1,62 +1,59 @@
 ```markdown
-# Domain Finder Tool
+# DORK-MASTER (Dorking By Country Code e.g.: .us for USA)
+### Tool Name: DORK-MASTER  
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge&logo=github)](https://github.com/hackinter/Dork-Master)  
+### Author: HACKINTER  
+### Created Date: 2024  
 
-This is a simple domain finder tool that helps in searching for domain names in specific countries.
+<p align="center">
+<a href="https://github.com/hackinter"><img title="Github" src="https://img.shields.io/badge/hackinter-grey?style=for-the-badge&logo=github"></a>
+</p>
+<p align="center"> 
+<a href="https://x.com/_anonix_z"><img title="Twitter" src="https://img.shields.io/badge/Twitter-HACKINTER-lightgrey?style=for-the-badge&logo=twitter"></a>
+</p>
 
-## Features
-- Find domain names for specific countries
-- Option to save results to a file
-- User-friendly interface
+### DESCRIPTION:
+**DOMAIN-FINDER** is a Python-based tool designed to help users find domain names based on country codes. This tool is simple to use and enables users to search for specific domains quickly through the terminal.
 
-## Version
-![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)
-<a href="https://github.com/hackinter"> 
-    <img title="GitHub" src="https://img.shields.io/badge/GitHub-@hackinter-lightgrey?style=for-the-badge&logo=github"> 
-</a> 
-<a href="https://twitter.com/_anonix_z"> 
-    <img title="Twitter" src="https://img.shields.io/badge/Twitter-@_anonix_z-lightgrey?style=for-the-badge&logo=twitter"> 
-</a>
+## REQUIREMENTS:
+Before you install **DOMAIN-FINDER**, ensure that you have the following installed on your system:
 
-## Installation
+- **Python 3**: Verify that Python 3.x is installed. You can check by running `python3 --version` in the terminal.
+- **Git**: Required to clone the repository. Check if it's installed by running `git --version`.
+- **Pip**: Python's package installer, needed to install dependencies. It usually comes with Python 3.x.
 
-### Requirements
-- **Python 3.6 or higher**: Ensure you have Python installed on your machine. You can download it from the [official Python website](https://www.python.org/downloads/).
-- **Pip**: Python's package installer, which is included by default with Python installations.
-- **`googlesearch-python` module**: This module is required for performing Google searches.
+## INSTALLATION:
 
-### Installation Steps
+### For Linux:
+Run the following commands in your terminal to install the tool:
 
-1. **Install Python**: If you do not have Python installed on your computer, download and install it from the [official Python website](https://www.python.org/downloads/).
+```bash
+sudo apt-get install python3 git -y
+sudo apt-get install python3-pip -y
+pip install googlesearch-python
+git clone https://github.com/hackinter/Dork-Master.git
+cd Dork-Master
+python3 drok.py
+```
 
-2. **Verify Python Installation**: Open your terminal/command prompt and run:
-   ```bash
-   python --version
-   ```
-   This should display the installed version of Python.
+### For Termux:
+If you're using Termux, execute the following commands to install the tool:
 
-3. **Install Required Module**: Use pip to install the required module by running the following command:
-   ```bash
-   pip install googlesearch-python
-   ```
+```bash
+pkg update -y
+pkg upgrade -y
+pkg install python git -y
+pip install googlesearch-python
+git clone https://github.com/hackinter/Dork-Master.git
+cd Dork-Master
+python drok.py
+```
 
-4. **Run the Code**: 
-   - Save the script file, for example as `dork.py`.
-   - Run it in the terminal with the following command:
-   ```bash
-   python dork.py
-   ```
+## ONE CLICK INSTALLATION:
+For quick installation, you can use this single command for **Linux**:
 
-## Usage Instructions
+```bash
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install python3 git -y && sudo apt-get install python3-pip -y && pip install googlesearch-python && git clone https://github.com/hackinter/Dork-Master.git && cd Dork-Master python3 dork.py
+```
 
-1. After starting the tool, you will need to specify a filename to save the domain results.
-2. Enter the country code for the domain you want to search (e.g., .bd for Bangladesh).
-3. Specify how many domains you need.
-4. The tool will search for domain names for the specified country and display the results.
-
-## Contribution
-
-If you would like to contribute to the improvement of this tool, please share your ideas and pull requests in our [GitHub repository](https://github.com/hackinter).
-
-## License
-
-This project is licensed under the MIT License.
+### © 2024 HACKINTER. All rights reserved.
