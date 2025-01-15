@@ -1,128 +1,113 @@
 import sys
 import time
 import os
+from googlesearch import search
+from termcolor import colored
 
-# custom speed strings
+# Custom printing functions for dynamic output speeds
 def slow(s):
     for c in s + '\n':
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(4. / 100)
+        time.sleep(0.04)
 
 def med(s):
     for c in s + '\n':
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(2. / 100)
+        time.sleep(0.02)
 
 def fast(s):
     for c in s + '\n':
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(1. / 170)
+        time.sleep(0.006)
 
-try:
-    from googlesearch import search
-except ImportError:
-    fast("[!] you must install google ..")
-    med("[*] wait a moment, this program will install the module ...")
-    os.system("pip3 install google")
-    time.sleep(3)
-    med("[*] done ...")
+# Clear terminal screen
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
-# ধীরে ধীরে ব্যানার প্রিন্ট করার ফাংশন
+# Print banner
 def banner():
     banner_text = """
-██████╗  ██████╗ ██████╗ ██╗  ██╗     ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ 
-██╔══██╗██╔═══██╗██╔══██╗██║ ██╔╝     ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗
-██║  ██║██║   ██║██████╔╝█████╔╝█████╗██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝
-██║  ██║██║   ██║██╔══██╗██╔═██╗╚════╝██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗
-██████╔╝╚██████╔╝██║  ██║██║  ██╗     ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║
-╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+    ██████╗  ██████╗ ██████╗ ██╗  ██╗     ███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ 
+    ██╔══██╗██╔═══██╗██╔══██╗██║ ██╔╝     ████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗
+    ██║  ██║██║   ██║██████╔╝█████╔╝█████╗██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝
+    ██║  ██║██║   ██║██╔══██╗██╔═██╗╚════╝██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗
+    ██████╔╝╚██████╔╝██║  ██║██║  ██╗     ██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║
+    ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
     """
     slow(banner_text)
 
-def clear():
-    if sys.platform.startswith('linux'):
-        os.system('clear')
-    elif sys.platform.startswith('freebsd'):
-        os.system('clear')
-    else:
-        os.system('cls')
+# Validate Python version
+def validate_python_version():
+    if not sys.version.startswith("3"):
+        slow("[x] This script requires Python 3. Exiting...")
+        sys.exit(1)
+    slow("[!] Python 3 detected. Proceeding...")
+    time.sleep(1)
 
-# check python version   
-if sys.version.startswith("3"):
-    slow("[!] python3 detected ...")
-    time.sleep(3)
-else:
-    slow("[x] you must be run using python3 ...")
-    time.sleep(3)
-    sys.exit(1)
+# Save search results to a file
+def save_to_file(filename, content):
+    with open(f"{filename}.txt", "a", encoding="utf-8") as file:
+        file.write(content + "\n")
 
-# print starting
-slow('[!] starting ... ')
-time.sleep(2)
-clear()
-time.sleep(1)
-banner()  # ব্যানার দেখানো হবে
-
-med(""" 
-=============================================================================== 
-[*] coded by ROOT@ANONYMIZER                                                [*] 
-[*] Copyright 2024 HACKINTER                                                [*] 
-[*] just simple tools to make your life easier                              [*] 
-[*] Thanks to ALLAH, Free Palestine                                         [*] 
-[*] https://github.com/hackinter (Hacking is Creative problem solving)      [*] 
-===============================================================================
-""")
-time.sleep(2)
-
-try:
-    namefile = input("\n[?] want to save the dork result file (Y/N) ").strip()
-    dork = ("")
-except KeyboardInterrupt:
-    print ("\n[!] you pressed ctrl + c")
-    time.sleep(0.5)
-    print("\n[!] exit")
-    sys.exit(1)
-
-def savefile(namefile):
-    with open(f"{dork}.txt", "a") as file:
-        file.write(str(namefile) + "\n")
-
-if namefile.lower().startswith("y"):
-    print("[!] input filename without extension")
-    dork = input("[?] enter the file name : ")
-else:
-    print ("[*] file not saved \n")
-
-def akhir():
+# Perform the search
+def perform_search(dork, country_code, num_results, save_results=False, filename=None):
+    fast("[+] Performing Google search...\n")
     try:
-        country_code = input("\n[*] enter country code (e.g., .bd for Bangladesh) : ").strip()
-        dork = f"site:*{country_code}"
-        uneed = input("[?] how much do you need : ")
-        print("\n")
+        results_found = 0
+        for result in search(dork, tld="com", lang="en", num=int(num_results), start=0, stop=None, pause=2):
+            print(colored(f"[*] {result}", "yellow"))
+            results_found += 1
 
-        requ = 0
+            if save_results and filename:
+                save_to_file(filename, result)
 
-        for results in search(dork, tld="com", lang="en", num=int(uneed), start=0, stop=None, pause=2):
-            print("[*]", results)
-            time.sleep(0.1)
-            requ += 1.
-            if requ >= int(uneed):
+            if results_found >= int(num_results):
                 break
 
-            savefile(results)
-            time.sleep(0.1)
+        fast(f"\n[!] Total results found: {results_found}\n")
 
     except KeyboardInterrupt:
-        print("\n")
-        print("[!] you pressed ctrl + c ... !")
-        print("[!] exit ..")
-        time.sleep(0.5)
+        fast("\n[!] Search interrupted by user.")
         sys.exit(1)
 
-    slow("[!] done ... ")
-    sys.exit()
+# Main script logic
+def main():
+    clear()
+    banner()
+    med("""
+=============================================================================== 
+[*] Coded by ROOT@ANONYMIZER                                                [*] 
+[*] Copyright 2024 HACKINTER                                                [*] 
+[*] Simple tool to enhance your Google search capabilities                  [*] 
+[*] Thanks to ALLAH, Free Palestine                                         [*] 
+===============================================================================
+""")
 
-akhir()
+    validate_python_version()
+
+    try:
+        save_option = input(colored("\n[?] Save results to a file? (Y/N): ", "cyan")).strip().lower()
+        save_results = save_option == "y"
+
+        if save_results:
+            filename = input(colored("[?] Enter filename (without extension): ", "cyan")).strip()
+        else:
+            filename = None
+
+        country_code = input(colored("[?] Enter country code (e.g., .bd for Bangladesh): ", "cyan")).strip()
+        num_results = input(colored("[?] How many results do you need? ", "cyan")).strip()
+
+        dork = f"site:*{country_code}"
+        perform_search(dork, country_code, num_results, save_results, filename)
+
+    except KeyboardInterrupt:
+        fast("\n[!] Program interrupted by user.")
+        sys.exit(1)
+
+    slow("[!] Search completed successfully. Exiting...")
+
+if __name__ == "__main__":
+    main()
