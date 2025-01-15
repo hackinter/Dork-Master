@@ -53,11 +53,11 @@ def save_to_file(filename, content):
         file.write(content + "\n")
 
 # Perform the search
-def perform_search(dork, country_code, num_results, save_results=False, filename=None):
+def perform_search(dork, num_results, save_results=False, filename=None):
     fast("[+] Performing Google search...\n")
     try:
         results_found = 0
-        for result in search(dork, tld="com", lang="en", num=int(num_results), start=0, stop=None, pause=2):
+        for result in search(dork, lang="en", num_results=int(num_results)):
             print(colored(f"[*] {result}", "yellow"))
             results_found += 1
 
@@ -101,7 +101,7 @@ def main():
         num_results = input(colored("[?] How many results do you need? ", "cyan")).strip()
 
         dork = f"site:*{country_code}"
-        perform_search(dork, country_code, num_results, save_results, filename)
+        perform_search(dork, num_results, save_results, filename)
 
     except KeyboardInterrupt:
         fast("\n[!] Program interrupted by user.")
