@@ -1,11 +1,7 @@
 #!/bin/bash
 
 clear_terminal() {
-    if [ "$(uname)" == "Darwin" ]; then
-        clear
-    else
-        clear
-    fi
+    clear  # 'clear' কমান্ডটি সব প্ল্যাটফর্মে কাজ করবে, তাই 'if' শাখা ত্যাগ করা হয়েছে
 }
 
 # Function to check if Python3 is installed
@@ -41,6 +37,13 @@ main() {
     fi
 
     read -p "[?] How many results do you need? " num_results
+
+    # Checking if the entered number is a valid integer
+    while ! [[ "$num_results" =~ ^[0-9]+$ ]]; do
+        echo "[!] Invalid input. Please enter a valid number."
+        read -p "[?] How many results do you need? " num_results
+    done
+
     read -p "[?] Enter your dork query (use space for multiple queries): " dorks
 
     # Call the Python script and pass parameters
