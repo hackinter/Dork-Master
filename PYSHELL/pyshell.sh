@@ -18,7 +18,7 @@ check_python() {
 
 # Function to call Python script for Google search
 perform_python_search() {
-    python3 search_results.py "$1" "$2" "$3" "$4" "$5"
+    python3 pyshell.py "$1" "$2" "$3" "$4" "$5"
 }
 
 # Main function
