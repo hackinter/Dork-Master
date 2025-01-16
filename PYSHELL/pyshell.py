@@ -45,10 +45,17 @@ def perform_search(dorks, num_results, save_results=False, filename=None):
             print(f"\n[!] An error occurred for '{dork}': {str(e)}")
 
 def main():
+    if len(sys.argv) < 5:
+        print("[!] Usage: python script.py <dorks> <num_results> <save_results> <filename (if save_results=true)>")
+        sys.exit(1)
+
     dorks = sys.argv[1]
     num_results = sys.argv[2]
     save_results = sys.argv[3].lower() == 'true'
     filename = sys.argv[4] if save_results else None
+
+    # Add delay between searches to prevent blocking
+    time.sleep(1)
 
     perform_search(dorks, num_results, save_results, filename)
 
